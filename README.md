@@ -6,7 +6,7 @@ Microsoft Face API, a cloud-based service that provides the most advanced face a
 ## How to get credentials: 
  1. Go to the [Service page](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api)
  2. Create [Microsoft account](https://www.microsoft.com/cognitive-services/en-US/subscriptions) or log in. 
- 3. Choose "Computer Vision - Preview" to create new subscription
+ 3. Choose "Face - Preview" to create new subscription
  4. In **Key** section choose Key1 or Key2 and press <kbd>Show</kbd> or  <kbd>Copy</kbd>
 
 ## TOC: 
@@ -46,7 +46,7 @@ Detect human faces in an image and returns face locations, and optionally with f
 
 | Field               | Type       | Description
 |---------------------|------------|----------
-| subscriptionKey     | credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey     | credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | image               | String     | Required: To detect in a URL (or binary data) specified image.
 | returnFaceId        | String     | Optional: Return faceIds of the detected faces or not. The default value is true.
 | returnFaceLandmarks | String     | Optional: Return face landmarks of the detected faces or not. The default value is false.
@@ -58,7 +58,7 @@ Given query face's faceId, to search the similar-looking faces from a faceId arr
 
 | Field                      | Type       | Description
 |----------------------------|------------|----------
-| subscriptionKey            | credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey            | credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceId                     | String     | Required: faceId of the query face. User needs to call detectFaces first to get a valid faceId. Note that this faceId is not persisted and will expire in 24 hours after the detection call.
 | faceListId                 | String     | Required: An existing user-specified unique candidate face list, created earlier. Parameter faceListId and faceIds should not be provided at the same time.
 | faceIds                    | String     | Required: An array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time.
@@ -71,7 +71,7 @@ Divide candidate faces into groups based on face similarity.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceIds        | String     | Required: Array of candidate faceId created by detectFaces. The maximum is 1000 faces.
 
 <a name="identifyFaces"/>
@@ -80,7 +80,7 @@ Identify unknown faces from a person group.
 
 | Field                     | Type       | Description
 |---------------------------|------------|----------
-| subscriptionKey           | credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey           | credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceIds                   | String     | Required: Array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10].
 | personGroupId             | String     | Required: personGroupId of the target person group, created by createPersonGroup.
 | maxNumOfCandidatesReturned| String     | Optional: The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1).
@@ -92,7 +92,7 @@ Verify whether two faces belong to a same person
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceId1        | String     | Required: faceId of one face, comes from detectFaces.
 | faceId2        | String     | Required: faceId of one face, comes from detectFaces.
 
@@ -102,7 +102,7 @@ Verify whether one face belongs to a person.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceId         | String     | Required: faceId of face, comes from detectFaces.
 | personGroupId  | String     | Required: Using existing personGroupId and personId for fast loading a specified person. personGroupId is created in createPersonGroup.
 | personId       | String     | Required: Specify a certain person in a person group. personId is created in createPerson.
@@ -113,7 +113,7 @@ Add a face to a face list.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceListId     | String     | Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
 | image          | String     | Required: Image url. Image file size should between 1KB to 4MB. Only one face is allowed per image.
 | userData       | String     | Optional: User-specified data about the face list for any purpose. The maximum length is 1KB.
@@ -125,7 +125,7 @@ Create an empty face list with user-specified faceListId, name and an optional u
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceListId     | String     | Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
 | name           | String     | Required: Name of the created face list, maximum length is 128.
 | userData       | String     | Optional: Optional user defined data for the face list. Length should not exceed 16KB.
@@ -136,7 +136,7 @@ Delete an existing face from a face list (given by a persisitedFaceId and a face
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceListId     | String     | Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
 | persistedFaceId| String     | Required: persistedFaceId of an existing face. Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
 
@@ -146,7 +146,7 @@ Delete an existing face list according to faceListId. Persisted face images in t
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceListId     | String     | Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
 
 <a name="getFaceList"/>
@@ -155,7 +155,7 @@ Retrieve a face list's information, including faceListId, name, userData and fac
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceListId     | String     | Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
 
 <a name="getFaceLists"/>
@@ -164,7 +164,7 @@ Retrieve information about all existing face lists. Only faceListId, name and us
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 
 <a name="updateFaceList"/>
 ## MicrosoftFaceApi.updateFaceList
@@ -172,7 +172,7 @@ Update information of a face list, including name and userData.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceListId     | String     | Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
 | name           | String     | Required: Name of the created face list, maximum length is 128.
 | userData       | String     | Optional: Optional user defined data for the face list. Length should not exceed 16KB.
@@ -183,7 +183,7 @@ Add a representative face to a person for identification.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the target person.
 | personId       | String     | Required: Target person that the face is added to.
 | image          | String     | Required: Face image URL. Valid image size is from 1KB to 4MB. Only one face is allowed per image.
@@ -196,7 +196,7 @@ Create a new person in a specified person group.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the target person.
 | name           | String     | Required: Display name of the target person. The maximum length is 128.
 | userData       | String     | Optional: User-specified data about the target face to add for any purpose. The maximum length is 1KB.
@@ -207,7 +207,7 @@ Delete an existing person from a person group. Persisted face images of the pers
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the person.
 | personId       | String     | Required: The target personId to delete.
 
@@ -217,7 +217,7 @@ Delete a face from a person. Relative image for the persisted face will also be 
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the person.
 | personId       | String     | Required: The target personId to delete.
 | persistedFaceId| String     | Required: The persisted face to remove.
@@ -228,7 +228,7 @@ Retrieve a person's information, including registered persisted faces, name and 
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the person.
 | personId       | String     | Required: The target personId to delete.
 
@@ -238,7 +238,7 @@ Retrieve information about a persisted face (specified by persistedFaceId, perso
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the person.
 | personId       | String     | Required: The target personId to delete.
 | persistedFaceId| String     | Required: The persistedFaceId of the target persisted face of the person.
@@ -249,7 +249,7 @@ List all persons in a person group, and retrieve person information (including p
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: personGroupId of the target person group.
 
 <a name="updatePerson"/>
@@ -258,7 +258,7 @@ Update name or userData of a person.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the target person.
 | personId       | String     | Required: personId of the target person.
 | name           | String     | Required: Target person's display name. Maximum length is 128.
@@ -270,7 +270,7 @@ Update a person persisted face's userData field.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Specifying the person group containing the target person.
 | personId       | String     | Required: personId of the target person.
 | persistedFaceId| String     | Required: persistedFaceId of target face, which is persisted and will not expire.
@@ -282,7 +282,7 @@ Create a new person group with specified personGroupId, name and user-provided u
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.
 | name           | String     | Required: Person group display name. The maximum length is 128.
 | userData       | String     | Optional: User-provided data attached to the person group. The size limit is 16KB.
@@ -293,7 +293,7 @@ Delete an existing person group. Persisted face images of all people in the pers
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.
 
 <a name="getPersonGroup"/>
@@ -302,7 +302,7 @@ Retrieve the information of a person group, including its name and userData.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.
 
 <a name="getPersonGroupTrainingStatus"/>
@@ -311,7 +311,7 @@ Retrieve the training status of a person group (completed or ongoing).
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.
 
 <a name="getPersonGroups"/>
@@ -320,7 +320,7 @@ List person groups and their information.
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | start          | String     | Optional: List person groups from the least personGroupId greater than the "start". It contains no more than 64 characters. Default is empty.
 | top            | String     | Optional: The number of person groups to list, ranging in [1, 1000]. Default is 1000.
 
@@ -330,7 +330,7 @@ Queue a person group training task, the training task may not be started immedia
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: Target person group to be trained.
 
 <a name="updatePersonGroup"/>
@@ -339,7 +339,7 @@ Update an existing person group's display name and userData. The properties whic
 
 | Field          | Type       | Description
 |----------------|------------|----------
-| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Servisces.
+| subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | personGroupId  | String     | Required: personGroupId of the person group to be updated.
 | name           | String     | Optional: Person group display name. The maximum length is 128.
 | userData       | String     | Optional: User-provided data attached to the person group. The size limit is 16KB.
