@@ -276,7 +276,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $response = $this->runApp('POST', '/api/MicrosoftFaceApi/createPerson', $post_data);
 
         $data = json_decode($response->getBody())->contextWrites->to;
-        $data = stripcslashes($data);
+        $data = stripslashes($data);
         $data = substr($data,0,-1);
         $data = substr($data,1);
         $data = json_decode($data, true);
