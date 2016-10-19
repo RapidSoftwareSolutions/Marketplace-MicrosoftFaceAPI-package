@@ -56,7 +56,11 @@ $app->post('/api/MicrosoftFaceApi/addFaceToFaceList', function ($request, $respo
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = json_encode($responseBody);
+            if(!empty($post_data['args']['runscope'])) {
+                $result['contextWrites']['to'] = json_decode($responseBody);
+            } else {
+                $result['contextWrites']['to'] = json_encode($responseBody);
+            }
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to'] = $responseBody;
