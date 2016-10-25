@@ -1,13 +1,19 @@
 <?php
+require_once(__DIR__ . '/../Models/normalizeJson.php');
 
 $app->post('/api/MicrosoftFaceApi/findSimilarFaces', function ($request, $response, $args) {
     $settings =  $this->settings;
-    
+
+
     $data = $request->getBody();
-    $post_data = json_decode($data, true);
-    if(!isset($post_data['args'])) {
-        $data = $request->getParsedBody();
-        $post_data = $data;
+
+    if($data=='') {
+        $post_data = $request->getParsedBody();
+    } else {
+        $toJson = new normilizeJson();
+        $data = $toJson->normalizeJson($data); 
+        $data = str_replace('\"', '"', $data);
+        $post_data = json_decode($data, true);
     }
     
     $error = [];
@@ -41,7 +47,7 @@ $app->post('/api/MicrosoftFaceApi/findSimilarFaces', function ($request, $respon
     if(!empty($post_data['args']['maxNumOfCandidatesReturned'])) {
         $body['maxNumOfCandidatesReturned'] = $post_data['args']['maxNumOfCandidatesReturned'];
     }
-    if(!empty($post_data['args']['mode '])) {
+    if(!empty($post_data['args']['mode'])) {
         $body['mode'] = $post_data['args']['mode'];
     }
     

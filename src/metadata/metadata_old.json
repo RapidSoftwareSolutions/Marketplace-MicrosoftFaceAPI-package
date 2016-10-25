@@ -12,6 +12,7 @@
     },
     "blocks": [{
         "name":"detectFaces",
+        "description": "Detect human faces in an image and returns face locations, and optionally with faceIds, landmarks, and attributes.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -51,6 +52,7 @@
         ]
     }, {
         "name":"findSimilarFaces",
+        "description": "Given query face's faceId, to search the similar-looking faces from a faceId array or a faceListId. ",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -72,13 +74,13 @@
                 "info": "Required: An array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time."
             },
             {
-                "name": "maxNumOfCandidatesReturned",
+                "name": "maxNumOfCandidatesReturned ",
                 "type": "String",
                 "info": "Optional: The number of top similar faces returned. The valid range is [1, 1000].It defaults to 20."
             }
             ,
             {
-                "name": "mode",
+                "name": "mode ",
                 "type": "String",
                 "info": "Optional: Similar face searching mode. It can be \"matchPerson\" or \"matchFace\". It defaults to \"matchPerson\"."
             }
@@ -95,6 +97,7 @@
         ]
     }, {
         "name":"divideFacesIntoGroups",
+        "description": "Divide candidate faces into groups based on face similarity.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -118,6 +121,7 @@
         ]
     }, {
         "name":"identifyFaces",
+        "description": "Identify unknown faces from a person group.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -153,6 +157,7 @@
         ]
     }, {
         "name":"verifyFaceToFace",
+        "description": "Verify whether two faces belong to a same person",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -180,6 +185,7 @@
         ]
     }, {
         "name":"verifyFaceToPerson",
+        "description": "Verify whether one face belongs to a person.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -211,6 +217,7 @@
         ]
     }, {
         "name":"addFaceToFaceList",
+        "description": "Add a face to a face list.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -246,6 +253,7 @@
         ]
     }, {
         "name":"createFaceList",
+        "description": "Create an empty face list with user-specified faceListId, name and an optional userData. Up to 64 face lists are allowed to exist in one subscription.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -277,6 +285,7 @@
         ]
     }, {
         "name":"deleteFaceFromFaceList",
+        "description": "Delete an existing face from a face list (given by a persisitedFaceId and a faceListId). Persisted image related to the face will also be deleted.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -304,6 +313,7 @@
         ]
     }, {
         "name":"deleteFaceList",
+        "description": "Delete an existing face list according to faceListId. Persisted face images in the face list will also be deleted.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -327,6 +337,7 @@
         ]
     }, {
         "name":"getFaceList",
+        "description": "Retrieve a face list's information, including faceListId, name, userData and faces in the face list.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -350,6 +361,7 @@
         ]
     }, {
         "name":"getFaceLists",
+        "description": "Retrieve information about all existing face lists. Only faceListId, name and userData will be returned.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -369,6 +381,7 @@
         ]
     }, {
         "name":"updateFaceList",
+        "description": "Update information of a face list, including name and userData.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -400,6 +413,7 @@
         ]
     }, {
         "name":"addPersonFace",
+        "description": "Add a representative face to a person for identification.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -439,6 +453,7 @@
         ]
     }, {
         "name":"createPerson",
+        "description": "Create a new person in a specified person group.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -470,6 +485,7 @@
         ]
     }, {
         "name":"deletePerson",
+        "description": "Delete an existing person from a person group. Persisted face images of the person will also be deleted.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -497,6 +513,7 @@
         ]
     }, {
         "name":"deletePersonFace",
+        "description": "Delete a face from a person. Relative image for the persisted face will also be deleted.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -528,6 +545,7 @@
         ]
     }, {
         "name":"getPerson",
+        "description": "Retrieve a person's information, including registered persisted faces, name and userData.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -555,6 +573,7 @@
         ]
     }, {
         "name":"getPersonFace",
+        "description": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging personGroupId).",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -586,6 +605,7 @@
         ]
     }, {
         "name":"getPersonsInPersonGroup",
+        "description": "List all persons in a person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -609,6 +629,7 @@
         ]
     }, {
         "name":"updatePerson",
+        "description": "Update name or userData of a person.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -644,6 +665,7 @@
         ]
     }, {
         "name":"updatePersonFace",
+        "description": "Update a person persisted face's userData field.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -679,6 +701,7 @@
         ]
     }, {
         "name":"createPersonGroup",
+        "description": "Create a new person group with specified personGroupId, name and user-provided userData. ",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -710,6 +733,7 @@
         ]
     }, {
         "name":"deletePersonGroup",
+        "description": "Delete an existing person group. Persisted face images of all people in the person group will also be deleted.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -733,6 +757,7 @@
         ]
     }, {
         "name":"getPersonGroup",
+        "description": "Retrieve the information of a person group, including its name and userData.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -756,6 +781,7 @@
         ]
     }, {
         "name":"getPersonGroupTrainingStatus",
+        "description": "Retrieve the training status of a person group (completed or ongoing).",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -779,6 +805,7 @@
         ]
     }, {
         "name":"getPersonGroups",
+        "description": "List person groups and their information.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -806,6 +833,7 @@
         ]
     }, {
         "name":"trainPersonGroup",
+        "description": "Queue a person group training task, the training task may not be started immediately.",
         "args":[
             {
                 "name": "subscriptionKey",
@@ -829,6 +857,7 @@
         ]
     }, {
         "name":"updatePersonGroup",
+        "description": "Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.",
         "args":[
             {
                 "name": "subscriptionKey",

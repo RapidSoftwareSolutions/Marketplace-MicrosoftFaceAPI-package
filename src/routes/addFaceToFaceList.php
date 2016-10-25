@@ -1,13 +1,18 @@
 <?php
+require_once(__DIR__ . '/../Models/normalizeJson.php');
 
 $app->post('/api/MicrosoftFaceApi/addFaceToFaceList', function ($request, $response, $args) {
     $settings =  $this->settings;
     
-    $data = $request->getBody();
-    $post_data = json_decode($data, true);
-    if(!isset($post_data['args'])) {
-        $data = $request->getParsedBody();
-        $post_data = $data;
+   $data = $request->getBody();
+
+    if($data=='') {
+        $post_data = $request->getParsedBody();
+    } else {
+        $toJson = new normilizeJson();
+        $data = $toJson->normalizeJson($data); 
+        $data = str_replace('\"', '"', $data);
+        $post_data = json_decode($data, true);
     }
     
     $error = [];
@@ -63,7 +68,7 @@ $app->post('/api/MicrosoftFaceApi/addFaceToFaceList', function ($request, $respo
             }
         } else {
             $result['callback'] = 'error';
-            $result['contextWrites']['to'] = $responseBody;
+            $result['contextWrites']['to'] = json_encode($responseBody);
         }
 
     } catch (\GuzzleHttp\Exception\ClientException $exception) {

@@ -33,8 +33,8 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceId": "c695c28a-09a2-4db2-bef9-db80f1742eae",
-                      "faceIds": ["c695c28a-09a2-4db2-bef9-db80f1742eae"],
+                      "faceId": "f5eeebaf-eded-4243-909d-64df48c5556c",
+                      "faceIds": ["f5eeebaf-eded-4243-909d-64df48c5556c"],
                       "maxNumOfCandidatesReturned": "10",
                       "mode": "matchPerson"
                     }
@@ -53,7 +53,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceIds": ["c695c28a-09a2-4db2-bef9-db80f1742eae", "0926b79a-9033-44e0-9521-e1d0ebb0d074"]
+                      "faceIds": ["f5eeebaf-eded-4243-909d-64df48c5556c", "02d6545d-55c4-4f11-8a73-e8486871e25a"]
                     }
                 }';
         $post_data = json_decode($var, true);
@@ -70,7 +70,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceIds": ["c695c28a-09a2-4db2-bef9-db80f1742eae", "0926b79a-9033-44e0-9521-e1d0ebb0d074"],
+                      "faceIds": ["f5eeebaf-eded-4243-909d-64df48c5556c", "02d6545d-55c4-4f11-8a73-e8486871e25a"],
                       "personGroupId": "group"
                     }
                 }';
@@ -88,8 +88,8 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceId1": "c695c28a-09a2-4db2-bef9-db80f1742eae",
-                      "faceId2": "0926b79a-9033-44e0-9521-e1d0ebb0d074"
+                      "faceId1": "f5eeebaf-eded-4243-909d-64df48c5556c",
+                      "faceId2": "02d6545d-55c4-4f11-8a73-e8486871e25a"
                     }
                 }';
         $post_data = json_decode($var, true);
@@ -106,7 +106,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceId": "c695c28a-09a2-4db2-bef9-db80f1742eae",
+                      "faceId": "f5eeebaf-eded-4243-909d-64df48c5556c",
                       "personGroupId": "group",
                       "personId": "15a2f546-212a-4a77-af90-f7384b5d0ec0"
                     }

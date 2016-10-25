@@ -29,3 +29,9 @@ $container['pager'] = function() {
     $pager = new Models\NextPage();
     return $pager;
 };
+
+//Normalize Json
+$container['normalize'] = function() {
+    $normalize = new Models\normilizeJson();
+    return $normalize;
+};
