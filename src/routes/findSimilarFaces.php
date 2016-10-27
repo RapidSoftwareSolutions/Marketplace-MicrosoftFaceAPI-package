@@ -3,18 +3,14 @@
 $app->post('/api/MicrosoftFaceApi/findSimilarFaces', function ($request, $response, $args) {
     $settings =  $this->settings;
 
-
     $data = $request->getBody();
-    $f = fopen(__DIR__ .'/test.txt', 'r+');
-    fwrite($f, $data);
-
+    
     if($data=='') {
         $post_data = $request->getParsedBody();
     } else {
         $toJson = $this->toJson;
         $data = $toJson->normalizeJson($data); 
         $data = str_replace('\"', '"', $data);
-        fwrite($f, $data);
         $post_data = json_decode($data, true);
     }
     
