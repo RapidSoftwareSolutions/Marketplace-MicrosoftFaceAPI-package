@@ -33,8 +33,8 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceId": "f5eeebaf-eded-4243-909d-64df48c5556c",
-                      "faceIds": ["f5eeebaf-eded-4243-909d-64df48c5556c"],
+                      "faceId": "1cbb4b3b-3a83-457a-a3dc-3110b094dc21",
+                      "faceIds": ["1cbb4b3b-3a83-457a-a3dc-3110b094dc21"],
                       "maxNumOfCandidatesReturned": "10",
                       "mode": "matchPerson"
                     }
@@ -53,7 +53,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceIds": ["f5eeebaf-eded-4243-909d-64df48c5556c", "02d6545d-55c4-4f11-8a73-e8486871e25a"]
+                      "faceIds": ["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
                     }
                 }';
         $post_data = json_decode($var, true);
@@ -70,7 +70,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceIds": ["f5eeebaf-eded-4243-909d-64df48c5556c", "02d6545d-55c4-4f11-8a73-e8486871e25a"],
+                      "faceIds": ["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"],
                       "personGroupId": "group"
                     }
                 }';
@@ -88,8 +88,8 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceId1": "f5eeebaf-eded-4243-909d-64df48c5556c",
-                      "faceId2": "02d6545d-55c4-4f11-8a73-e8486871e25a"
+                      "faceId1": "1cbb4b3b-3a83-457a-a3dc-3110b094dc21",
+                      "faceId2": "1cbb4b3b-3a83-457a-a3dc-3110b094dc21"
                     }
                 }';
         $post_data = json_decode($var, true);
@@ -106,7 +106,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $var = '{
                     "args": {
                       "subscriptionKey": "'.$this->subscriptionKey.'",
-                      "faceId": "f5eeebaf-eded-4243-909d-64df48c5556c",
+                      "faceId": "1cbb4b3b-3a83-457a-a3dc-3110b094dc21",
                       "personGroupId": "group",
                       "personId": "15a2f546-212a-4a77-af90-f7384b5d0ec0"
                     }
@@ -252,11 +252,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $response = $this->runApp('POST', '/api/MicrosoftFaceApi/addPersonFace', $post_data);
         
         $data = json_decode($response->getBody())->contextWrites->to;
-        $data = stripcslashes($data);
-        $data = substr($data,0,-1);
-        $data = substr($data,1);
-        $data = json_decode($data, true);
-        $this->persistedFaceId = $data['persistedFaceId'];
+        $this->persistedFaceId = $data->persistedFaceId;
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertNotEmpty($response->getBody());
@@ -277,11 +273,7 @@ class MicrosoftFaceApiTest extends BaseTestCase {
         $response = $this->runApp('POST', '/api/MicrosoftFaceApi/createPerson', $post_data);
 
         $data = json_decode($response->getBody())->contextWrites->to;
-        $data = stripslashes($data);
-        $data = substr($data,0,-1);
-        $data = substr($data,1);
-        $data = json_decode($data, true);
-        $this->personId = $data['personId'];
+        $this->personId = $data->personId;
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertNotEmpty($response->getBody());

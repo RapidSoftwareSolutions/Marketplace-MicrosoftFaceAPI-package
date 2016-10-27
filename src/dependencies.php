@@ -30,8 +30,8 @@ $container['pager'] = function() {
     return $pager;
 };
 
-//Normalize Json
-$container['normalize'] = function() {
-    $normalize = new Models\normilizeJson();
-    return $normalize;
+//Json normalize
+$container['toJson'] = function() {
+    $toJson = new Models\normilizeJson();
+    return $toJson;
 };

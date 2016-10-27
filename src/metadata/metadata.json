@@ -74,13 +74,13 @@
                 "info": "Required: An array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time."
             },
             {
-                "name": "maxNumOfCandidatesReturned ",
+                "name": "maxNumOfCandidatesReturned",
                 "type": "String",
                 "info": "Optional: The number of top similar faces returned. The valid range is [1, 1000].It defaults to 20."
             }
             ,
             {
-                "name": "mode ",
+                "name": "mode",
                 "type": "String",
                 "info": "Optional: Similar face searching mode. It can be \"matchPerson\" or \"matchFace\". It defaults to \"matchPerson\"."
             }
