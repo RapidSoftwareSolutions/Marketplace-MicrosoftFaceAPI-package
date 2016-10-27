@@ -24,9 +24,9 @@ $app->post('/api/MicrosoftFaceApi/deleteFaceFromFaceList', function ($request, $
     if(empty($post_data['args']['persistedFaceId'])) {
         $error[] = 'persistedFaceId cannot be empty';
     }
+        $result['callback'] = 'error';
     
     if(!empty($error)) {
-        $result['callback'] = 'error';
         $result['contextWrites']['to'] = implode(',', $error);
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
     }
@@ -48,7 +48,7 @@ $app->post('/api/MicrosoftFaceApi/deleteFaceFromFaceList', function ($request, $
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
+            $result['contextWrites']['to'] = "deleted";
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);

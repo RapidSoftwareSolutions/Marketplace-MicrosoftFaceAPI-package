@@ -54,7 +54,7 @@ $app->post('/api/MicrosoftFaceApi/updateFaceList', function ($request, $response
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
+            $result['contextWrites']['to'] = "updated";
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);

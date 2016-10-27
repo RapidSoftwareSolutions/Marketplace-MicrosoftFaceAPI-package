@@ -45,7 +45,7 @@ $app->post('/api/MicrosoftFaceApi/trainPersonGroup', function ($request, $respon
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '202') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
+            $result['contextWrites']['to'] = "success";
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
