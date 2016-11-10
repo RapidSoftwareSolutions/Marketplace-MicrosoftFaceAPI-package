@@ -68,9 +68,7 @@ Given query face's faceId, to search the similar-looking faces from a faceId arr
 ### faceIds format:
 
 ```json
-{
-	["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
-}
+["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
 ```
 
 <a name="divideFacesIntoGroups"/>
@@ -85,9 +83,7 @@ Divide candidate faces into groups based on face similarity.
 ### faceIds format:
 
 ```json
-{
-	["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
-}
+["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
 ```
 
 <a name="identifyFaces"/>
@@ -105,9 +101,8 @@ Identify unknown faces from a person group.
 ### faceIds format:
 
 ```json
-{
-	["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
-}
+["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
+```
 
 <a name="verifyFaceToFace"/>
 ## MicrosoftFaceApi.verifyFaceToFace
