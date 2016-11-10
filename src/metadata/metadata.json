@@ -70,8 +70,8 @@
             },
             {
                 "name": "faceIds",
-                "type": "String",
-                "info": "Required: An array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time."
+                "type": "JSON",
+                "info": "Required: An array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time. See the parameter notes section for more information. See findSimilarFaces README for more details."
             },
             {
                 "name": "maxNumOfCandidatesReturned",
@@ -105,8 +105,8 @@
                 "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
             }, {
                 "name": "faceIds",
-                "type": "String",
-                "info": "Required: Array of candidate faceId created by detectFaces. The maximum is 1000 faces."
+                "type": "JSON",
+                "info": "Required: Array of candidate faceId created by detectFaces. The maximum is 1000 faces. See the parameter notes section for more information. See divideFacesIntoGroups README for more details."
             }
         ],
         "callbacks":[
@@ -129,8 +129,8 @@
                 "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
             }, {
                 "name": "faceIds",
-                "type": "String",
-                "info": "Required: Array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10]."
+                "type": "JSON",
+                "info": "Required: Array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10]. See the parameter notes section for more information. See identifyFaces README for more details."
             }, {
                 "name": "personGroupId",
                 "type": "String",

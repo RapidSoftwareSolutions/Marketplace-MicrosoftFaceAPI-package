@@ -14,18 +14,29 @@ $app->post('/api/MicrosoftFaceApi/verifyFaceToPerson', function ($request, $resp
         $post_data = json_decode($data, true);
     }
     
+    if(json_last_error() != 0) {
+        $error[] = json_last_error_msg() . '. Incorrect input JSON. Please, check fields with JSON input.';
+    }
+    
+    if(!empty($error)) {
+        $result['callback'] = 'error';
+        $result['contextWrites']['to']['message'] = "There are incomplete fields in your request";
+        $result['contextWrites']['to']['fields'] = $error;
+        return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
+    }
+    
     $error = [];
     if(empty($post_data['args']['subscriptionKey'])) {
-        $error[] = 'subscriptionKey cannot be empty';
+        $error[] = 'subscriptionKey is required';
     }
     if(empty($post_data['args']['faceId'])) {
-        $error[] = 'faceId cannot be empty';
+        $error[] = 'faceId is required';
     }
     if(empty($post_data['args']['personGroupId'])) {
-        $error[] = 'personGroupId cannot be empty';
+        $error[] = 'personGroupId is required';
     }
     if(empty($post_data['args']['personId'])) {
-        $error[] = 'personId cannot be empty';
+        $error[] = 'personId is required';
     }
     
     if(!empty($error)) {
