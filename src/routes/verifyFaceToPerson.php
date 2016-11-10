@@ -20,8 +20,7 @@ $app->post('/api/MicrosoftFaceApi/verifyFaceToPerson', function ($request, $resp
     
     if(!empty($error)) {
         $result['callback'] = 'error';
-        $result['contextWrites']['to']['message'] = "There are incomplete fields in your request";
-        $result['contextWrites']['to']['fields'] = $error;
+        $result['contextWrites']['to'] = implode(',', $error);
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
     }
     
@@ -41,7 +40,8 @@ $app->post('/api/MicrosoftFaceApi/verifyFaceToPerson', function ($request, $resp
     
     if(!empty($error)) {
         $result['callback'] = 'error';
-        $result['contextWrites']['to'] = implode(',', $error);
+        $result['contextWrites']['to']['message'] = "There are incomplete fields in your request";
+        $result['contextWrites']['to']['fields'] = $error;
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
     }
     

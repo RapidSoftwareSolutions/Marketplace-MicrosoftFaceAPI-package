@@ -61,7 +61,7 @@ Given query face's faceId, to search the similar-looking faces from a faceId arr
 | subscriptionKey            | credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceId                     | String     | Required: faceId of the query face. User needs to call detectFaces first to get a valid faceId. Note that this faceId is not persisted and will expire in 24 hours after the detection call.
 | faceListId                 | String     | Required: An existing user-specified unique candidate face list, created earlier. Parameter faceListId and faceIds should not be provided at the same time.
-| faceIds                    | JSON       | Required: An array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time.
+| faceIds                    | JSON       | Required: An json array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time.
 | maxNumOfCandidatesReturned | String     | Optional: The number of top similar faces returned. The valid range is [1, 1000].It defaults to 20.
 | mode                       | String     | Optional: Similar face searching mode. It can be "matchPerson" or "matchFace". It defaults to "matchPerson".
 
@@ -78,7 +78,7 @@ Divide candidate faces into groups based on face similarity.
 | Field          | Type       | Description
 |----------------|------------|----------
 | subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
-| faceIds        | JSON       | Required: Array of candidate faceId created by detectFaces. The maximum is 1000 faces.
+| faceIds        | JSON       | Required: Json array of candidate faceId created by detectFaces. The maximum is 1000 faces.
 
 ### faceIds format:
 
@@ -93,7 +93,7 @@ Identify unknown faces from a person group.
 | Field                     | Type       | Description
 |---------------------------|------------|----------
 | subscriptionKey           | credentials| Required: The api key obtained from Microsoft Cognitive Services.
-| faceIds                   | JSON       | Required: Array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10].
+| faceIds                   | JSON       | Required: Json array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10].
 | personGroupId             | String     | Required: personGroupId of the target person group, created by createPersonGroup.
 | maxNumOfCandidatesReturned| String     | Optional: The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1).
 | confidenceThreshold       | String     | Optional: Confidence threshold of identification, used to judge whether one face belong to one person. The range of confidenceThreshold is [0, 1] (default specified by algorithm).
