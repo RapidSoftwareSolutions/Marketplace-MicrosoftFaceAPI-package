@@ -1,892 +1,837 @@
-{ 
+{
     "package": "MicrosoftFaceApi",
     "tagline": "Microsoft Face API Wrapper",
-    "description": "Microsoft Face API, a cloud-based service that provides the most advanced face algorithms. Face API has two main functions: face detection with attributes and face recognition.",
-    "image": "http://logo.clearbit.com/microsoft.com",
-    "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-MicrosoftFaceAPI-package",
+    "description": "Isolate faces and facial features in an image.",
+    "image": "http:\/\/logo.clearbit.com\/microsoft.com",
+    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-MicrosoftFaceAPI-package",
+    "keywords": ["AI", "API", "Microsoft", "artificial", "cognitive", "emotion", "face", "facial", "image", "images", "intelligence", "picture", "visual"],
     "accounts": {
         "domain": "microsoft.com",
-        "credentials": [
-            "subscriptionKey"
-        ]
+        "credentials": ["subscriptionKey"]
     },
     "blocks": [{
-        "name":"detectFaces",
-        "description": "Detect human faces in an image and returns face locations, and optionally with faceIds, landmarks, and attributes.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            },
-            {
-                "name": "image",
-                "type": "String",
-                "info": "Required: To detect in a URL (or binary data) specified image."
-            },
-            {
-                "name": "returnFaceId",
-                "type": "String",
-                "info": "Optional: Return faceIds of the detected faces or not. The default value is true."
-            },
-            {
-                "name": "returnFaceLandmarks",
-                "type": "String",
-                "info": "Optional: Return face landmarks of the detected faces or not. The default value is false."
-            },
-            {
-                "name": "returnFaceAttributes",
-                "type": "String",
-                "info": "Optional: Analyze and return the one or more specified face attributes in the comma-separated string like \"returnFaceAttributes=age,gender\". Supported face attributes include age, gender, headPose, smile, facialHair, and glasses. Note that each face attribute analysis has additional computational and time cost."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"findSimilarFaces",
-        "description": "Given query face's faceId, to search the similar-looking faces from a faceId array or a faceListId. ",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceId",
-                "type": "String",
-                "info": "Required: faceId of the query face. User needs to call detectFaces first to get a valid faceId. Note that this faceId is not persisted and will expire in 24 hours after the detection call."
-            },
-            {
-                "name": "faceListId",
-                "type": "String",
-                "info": "Required: An existing user-specified unique candidate face list, created earlier. Parameter faceListId and faceIds should not be provided at the same time."
-            },
-            {
-                "name": "faceIds",
-                "type": "JSON",
-                "info": "Required: An json array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time. See the parameter notes section for more information. See findSimilarFaces README for more details."
-            },
-            {
-                "name": "maxNumOfCandidatesReturned",
-                "type": "String",
-                "info": "Optional: The number of top similar faces returned. The valid range is [1, 1000].It defaults to 20."
-            }
-            ,
-            {
-                "name": "mode",
-                "type": "String",
-                "info": "Optional: Similar face searching mode. It can be \"matchPerson\" or \"matchFace\". It defaults to \"matchPerson\"."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"divideFacesIntoGroups",
-        "description": "Divide candidate faces into groups based on face similarity.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceIds",
-                "type": "JSON",
-                "info": "Required: Json array of candidate faceId created by detectFaces. The maximum is 1000 faces. See the parameter notes section for more information. See divideFacesIntoGroups README for more details."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"identifyFaces",
-        "description": "Identify unknown faces from a person group.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceIds",
-                "type": "JSON",
-                "info": "Required: Json array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10]. See the parameter notes section for more information. See identifyFaces README for more details."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: personGroupId of the target person group, created by createPersonGroup."
-            }, {
-                "name": "maxNumOfCandidatesReturned",
-                "type": "String",
-                "info": "Optional: The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1)."
-            }, {
-                "name": "confidenceThreshold",
-                "type": "String",
-                "info": "Optional: Confidence threshold of identification, used to judge whether one face belong to one person. The range of confidenceThreshold is [0, 1] (default specified by algorithm)."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"verifyFaceToFace",
-        "description": "Verify whether two faces belong to a same person",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceId1",
-                "type": "String",
-                "info": "Required: faceId of one face, comes from detectFaces."
-            }, {
-                "name": "faceId2",
-                "type": "String",
-                "info": "Required: faceId of one face, comes from detectFaces."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"verifyFaceToPerson",
-        "description": "Verify whether one face belongs to a person.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceId",
-                "type": "String",
-                "info": "Required: faceId of face, comes from detectFaces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Using existing personGroupId and personId for fast loading a specified person. personGroupId is created in createPersonGroup."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: Specify a certain person in a person group. personId is created in createPerson."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"addFaceToFaceList",
-        "description": "Add a face to a face list.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceListId",
-                "type": "String",
-                "info": "Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64."
-            }, {
-                "name": "image",
-                "type": "String",
-                "info": "Required: Image url. Image file size should between 1KB to 4MB. Only one face is allowed per image."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: User-specified data about the face list for any purpose. The maximum length is 1KB."
-            }, {
-                "name": "targetFace",
-                "type": "String",
-                "info": "Optional: A face rectangle to specify the target face to be added into the face list, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". If there is more than one face in the image, targetFace is required to specify which face to add. No targetFace means there is only one face detected in the entire image."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"createFaceList",
-        "description": "Create an empty face list with user-specified faceListId, name and an optional userData. Up to 64 face lists are allowed to exist in one subscription.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceListId",
-                "type": "String",
-                "info": "Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64."
-            }, {
-                "name": "name",
-                "type": "String",
-                "info": "Required: Name of the created face list, maximum length is 128."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: Optional user defined data for the face list. Length should not exceed 16KB."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"deleteFaceFromFaceList",
-        "description": "Delete an existing face from a face list (given by a persisitedFaceId and a faceListId). Persisted image related to the face will also be deleted.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceListId",
-                "type": "String",
-                "info": "Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64."
-            }, {
-                "name": "persistedFaceId",
-                "type": "String",
-                "info": "Required: persistedFaceId of an existing face. Valid character is letter in lower case or digit or '-' or '_', maximum length is 64."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"deleteFaceList",
-        "description": "Delete an existing face list according to faceListId. Persisted face images in the face list will also be deleted.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceListId",
-                "type": "String",
-                "info": "Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getFaceList",
-        "description": "Retrieve a face list's information, including faceListId, name, userData and faces in the face list.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceListId",
-                "type": "String",
-                "info": "Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getFaceLists",
-        "description": "Retrieve information about all existing face lists. Only faceListId, name and userData will be returned.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"updateFaceList",
-        "description": "Update information of a face list, including name and userData.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "faceListId",
-                "type": "String",
-                "info": "Required: Valid character is letter in lower case or digit or '-' or '_', maximum length is 64."
-            }, {
-                "name": "name",
-                "type": "String",
-                "info": "Required: Name of the created face list, maximum length is 128."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: Optional user defined data for the face list. Length should not exceed 16KB."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"addPersonFace",
-        "description": "Add a representative face to a person for identification.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the target person."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: Target person that the face is added to."
-            }, {
-                "name": "image",
-                "type": "String",
-                "info": "Required: Face image URL. Valid image size is from 1KB to 4MB. Only one face is allowed per image."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: User-specified data about the target face to add for any purpose. The maximum length is 1KB."
-            }, {
-                "name": "targetFace",
-                "type": "String",
-                "info": "Optional: A face rectangle to specify the target face to be added to a person, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". If there is more than one face in the image, targetFace is required to specify which face to add. No targetFace means there is only one face detected in the entire image."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"createPerson",
-        "description": "Create a new person in a specified person group.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the target person."
-            }, {
-                "name": "name",
-                "type": "String",
-                "info": "Required: Display name of the target person. The maximum length is 128."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: User-specified data about the target face to add for any purpose. The maximum length is 1KB."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"deletePerson",
-        "description": "Delete an existing person from a person group. Persisted face images of the person will also be deleted.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the person."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: The target personId to delete."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"deletePersonFace",
-        "description": "Delete a face from a person. Relative image for the persisted face will also be deleted.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the person."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: The target personId to delete."
-            }, {
-                "name": "persistedFaceId",
-                "type": "String",
-                "info": "Required: The persisted face to remove."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getPerson",
-        "description": "Retrieve a person's information, including registered persisted faces, name and userData.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the person."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: The target personId to delete."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getPersonFace",
-        "description": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging personGroupId).",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the person."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: The target personId to delete."
-            }, {
-                "name": "persistedFaceId",
-                "type": "String",
-                "info": "Required: The persistedFaceId of the target persisted face of the person."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getPersonsInPersonGroup",
-        "description": "List all persons in a person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: personGroupId of the target person group."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"updatePerson",
-        "description": "Update name or userData of a person.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the target person."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: personId of the target person."
-            }, {
-                "name": "name",
-                "type": "String",
-                "info": "Required: Target person's display name. Maximum length is 128."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: User-provided data attached to the person. Maximum length is 16KB."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"updatePersonFace",
-        "description": "Update a person persisted face's userData field.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Specifying the person group containing the target person."
-            }, {
-                "name": "personId",
-                "type": "String",
-                "info": "Required: personId of the target person."
-            }, {
-                "name": "persistedFaceId",
-                "type": "String",
-                "info": "Required: persistedFaceId of target face, which is persisted and will not expire."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: User-provided data attached to the person. Maximum length is 16KB."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"createPersonGroup",
-        "description": "Create a new person group with specified personGroupId, name and user-provided userData. ",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64."
-            }, {
-                "name": "name",
-                "type": "String",
-                "info": "Required: Person group display name. The maximum length is 128."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: User-provided data attached to the person group. The size limit is 16KB."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"deletePersonGroup",
-        "description": "Delete an existing person group. Persisted face images of all people in the person group will also be deleted.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getPersonGroup",
-        "description": "Retrieve the information of a person group, including its name and userData.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getPersonGroupTrainingStatus",
-        "description": "Retrieve the training status of a person group (completed or ongoing).",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"getPersonGroups",
-        "description": "List person groups and their information.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "start",
-                "type": "String",
-                "info": "Optional: List person groups from the least personGroupId greater than the \"start\". It contains no more than 64 characters. Default is empty."
-            }, {
-                "name": "top",
-                "type": "String",
-                "info": "Optional: The number of person groups to list, ranging in [1, 1000]. Default is 1000."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"trainPersonGroup",
-        "description": "Queue a person group training task, the training task may not be started immediately.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: Target person group to be trained."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }, {
-        "name":"updatePersonGroup",
-        "description": "Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.",
-        "args":[
-            {
-                "name": "subscriptionKey",
-                "type": "credentials",
-                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
-            }, {
-                "name": "personGroupId",
-                "type": "String",
-                "info": "Required: personGroupId of the person group to be updated."
-            }, {
-                "name": "name",
-                "type": "String",
-                "info": "Optional: Person group display name. The maximum length is 128."
-            }, {
-                "name": "userData",
-                "type": "String",
-                "info": "Optional: User-provided data attached to the person group. The size limit is 16KB."
-            }
-        ],
-        "callbacks":[
-            {
-                "name":"error",
-                "info": "Error"
-            },
-            {
-                "name":"success",
-                "info": "Success => channels: Array <string>"
-            }
-        ]
-    }
-    ]
+            "name": "detectFaces",
+            "description": "Detect human faces in an image and returns face locations, and optionally with faceIds, landmarks, and attributes.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "image",
+                    "type": "File",
+                    "info": "To detect in a URL (or binary data) specified image.",
+                    "required": true
+                }, {
+                    "name": "returnFaceId",
+                    "type": "String",
+                    "info": "Return faceIds of the detected faces or not. The default value is true.",
+                    "required": false
+                }, {
+                    "name": "returnFaceLandmarks",
+                    "type": "String",
+                    "info": "Return face landmarks of the detected faces or not. The default value is false.",
+                    "required": false
+                }, {
+                    "name": "returnFaceAttributes",
+                    "type": "String",
+                    "info": "Analyze and return the one or more specified face attributes in the comma-separated string like \"returnFaceAttributes=age,gender\". Supported face attributes include age, gender, headPose, smile, facialHair, and glasses. Note that each face attribute analysis has additional computational and time cost.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "findSimilarFaces",
+            "description": "Given query face's faceId, to search the similar-looking faces from a faceId array or a faceListId. ",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceId",
+                    "type": "String",
+                    "info": "faceId of the query face. User needs to call detectFaces first to get a valid faceId. Note that this faceId is not persisted and will expire in 24 hours after the detection call.",
+                    "required": true
+                }, {
+                    "name": "faceListId",
+                    "type": "String",
+                    "info": "An existing user-specified unique candidate face list, created earlier. Parameter faceListId and faceIds should not be provided at the same time.",
+                    "required": true
+                }, {
+                    "name": "faceIds",
+                    "type": "JSON",
+                    "info": "An json array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time. See the parameter notes section for more information. See findSimilarFaces README for more details.",
+                    "required": true
+                }, {
+                    "name": "maxNumOfCandidatesReturned",
+                    "type": "String",
+                    "info": "The number of top similar faces returned. The valid range is [1, 1000].It defaults to 20.",
+                    "required": false
+                }, {
+                    "name": "mode",
+                    "type": "String",
+                    "info": "Similar face searching mode. It can be \"matchPerson\" or \"matchFace\". It defaults to \"matchPerson\".",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "divideFacesIntoGroups",
+            "description": "Divide candidate faces into groups based on face similarity.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceIds",
+                    "type": "JSON",
+                    "info": "Json array of candidate faceId created by detectFaces. The maximum is 1000 faces. See the parameter notes section for more information. See divideFacesIntoGroups README for more details.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "identifyFaces",
+            "description": "Identify unknown faces from a person group.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceIds",
+                    "type": "JSON",
+                    "info": "Json array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10]. See the parameter notes section for more information. See identifyFaces README for more details.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "personGroupId of the target person group, created by createPersonGroup.",
+                    "required": true
+                }, {
+                    "name": "maxNumOfCandidatesReturned",
+                    "type": "String",
+                    "info": "The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1).",
+                    "required": false
+                }, {
+                    "name": "confidenceThreshold",
+                    "type": "String",
+                    "info": "Confidence threshold of identification, used to judge whether one face belong to one person. The range of confidenceThreshold is [0, 1] (default specified by algorithm).",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "verifyFaceToFace",
+            "description": "Verify whether two faces belong to a same person",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceId1",
+                    "type": "String",
+                    "info": "faceId of one face, comes from detectFaces.",
+                    "required": true
+                }, {
+                    "name": "faceId2",
+                    "type": "String",
+                    "info": "faceId of one face, comes from detectFaces.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "verifyFaceToPerson",
+            "description": "Verify whether one face belongs to a person.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceId",
+                    "type": "String",
+                    "info": "faceId of face, comes from detectFaces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Using existing personGroupId and personId for fast loading a specified person. personGroupId is created in createPersonGroup.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "Specify a certain person in a person group. personId is created in createPerson.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "addFaceToFaceList",
+            "description": "Add a face to a face list.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceListId",
+                    "type": "String",
+                    "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
+                    "required": true
+                }, {
+                    "name": "image",
+                    "type": "File",
+                    "info": "Image file. Image file size should between 1KB to 4MB. Only one face is allowed per image.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "User-specified data about the face list for any purpose. The maximum length is 1KB.",
+                    "required": false
+                }, {
+                    "name": "targetFace",
+                    "type": "String",
+                    "info": "A face rectangle to specify the target face to be added into the face list, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". If there is more than one face in the image, targetFace is required to specify which face to add. No targetFace means there is only one face detected in the entire image.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "createFaceList",
+            "description": "Create an empty face list with user-specified faceListId, name and an optional userData. Up to 64 face lists are allowed to exist in one subscription.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceListId",
+                    "type": "String",
+                    "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
+                    "required": true
+                }, {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Name of the created face list, maximum length is 128.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "Optional user defined data for the face list. Length should not exceed 16KB.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "deleteFaceFromFaceList",
+            "description": "Delete an existing face from a face list (given by a persisitedFaceId and a faceListId). Persisted image related to the face will also be deleted.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceListId",
+                    "type": "String",
+                    "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
+                    "required": true
+                }, {
+                    "name": "persistedFaceId",
+                    "type": "String",
+                    "info": "persistedFaceId of an existing face. Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "deleteFaceList",
+            "description": "Delete an existing face list according to faceListId. Persisted face images in the face list will also be deleted.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceListId",
+                    "type": "String",
+                    "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getFaceList",
+            "description": "Retrieve a face list's information, including faceListId, name, userData and faces in the face list.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceListId",
+                    "type": "String",
+                    "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getFaceLists",
+            "description": "Retrieve information about all existing face lists. Only faceListId, name and userData will be returned.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "updateFaceList",
+            "description": "Update information of a face list, including name and userData.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "faceListId",
+                    "type": "String",
+                    "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
+                    "required": true
+                }, {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Name of the created face list, maximum length is 128.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "Optional user defined data for the face list. Length should not exceed 16KB.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "addPersonFace",
+            "description": "Add a representative face to a person for identification.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the target person.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "Target person that the face is added to.",
+                    "required": true
+                }, {
+                    "name": "image",
+                    "type": "File",
+                    "info": "Face image. Valid image size is from 1KB to 4MB. Only one face is allowed per image.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "User-specified data about the target face to add for any purpose. The maximum length is 1KB.",
+                    "required": false
+                }, {
+                    "name": "targetFace",
+                    "type": "String",
+                    "info": "A face rectangle to specify the target face to be added to a person, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". If there is more than one face in the image, targetFace is required to specify which face to add. No targetFace means there is only one face detected in the entire image.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "createPerson",
+            "description": "Create a new person in a specified person group.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the target person.",
+                    "required": true
+                }, {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Display name of the target person. The maximum length is 128.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "User-specified data about the target face to add for any purpose. The maximum length is 1KB.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "deletePerson",
+            "description": "Delete an existing person from a person group. Persisted face images of the person will also be deleted.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the person.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "The target personId to delete.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "deletePersonFace",
+            "description": "Delete a face from a person. Relative image for the persisted face will also be deleted.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the person.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "The target personId to delete.",
+                    "required": true
+                }, {
+                    "name": "persistedFaceId",
+                    "type": "String",
+                    "info": "The persisted face to remove.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getPerson",
+            "description": "Retrieve a person's information, including registered persisted faces, name and userData.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the person.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "The target personId to delete.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getPersonFace",
+            "description": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging personGroupId).",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the person.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "The target personId to delete.",
+                    "required": true
+                }, {
+                    "name": "persistedFaceId",
+                    "type": "String",
+                    "info": "The persistedFaceId of the target persisted face of the person.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getPersonsInPersonGroup",
+            "description": "List all persons in a person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "personGroupId of the target person group.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "updatePerson",
+            "description": "Update name or userData of a person.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the target person.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "personId of the target person.",
+                    "required": true
+                }, {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Target person's display name. Maximum length is 128.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "User-provided data attached to the person. Maximum length is 16KB.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "updatePersonFace",
+            "description": "Update a person persisted face's userData field.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Specifying the person group containing the target person.",
+                    "required": true
+                }, {
+                    "name": "personId",
+                    "type": "String",
+                    "info": "personId of the target person.",
+                    "required": true
+                }, {
+                    "name": "persistedFaceId",
+                    "type": "String",
+                    "info": "persistedFaceId of target face, which is persisted and will not expire.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "User-provided data attached to the person. Maximum length is 16KB.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "createPersonGroup",
+            "description": "Create a new person group with specified personGroupId, name and user-provided userData. ",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.",
+                    "required": true
+                }, {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Person group display name. The maximum length is 128.",
+                    "required": true
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "User-provided data attached to the person group. The size limit is 16KB.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "deletePersonGroup",
+            "description": "Delete an existing person group. Persisted face images of all people in the person group will also be deleted.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getPersonGroup",
+            "description": "Retrieve the information of a person group, including its name and userData.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getPersonGroupTrainingStatus",
+            "description": "Retrieve the training status of a person group (completed or ongoing).",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "getPersonGroups",
+            "description": "List person groups and their information.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "start",
+                    "type": "String",
+                    "info": "List person groups from the least personGroupId greater than the \"start\". It contains no more than 64 characters. Default is empty.",
+                    "required": false
+                }, {
+                    "name": "top",
+                    "type": "String",
+                    "info": "The number of person groups to list, ranging in [1, 1000]. Default is 1000.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "trainPersonGroup",
+            "description": "Queue a person group training task, the training task may not be started immediately.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "Target person group to be trained.",
+                    "required": true
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }, {
+            "name": "updatePersonGroup",
+            "description": "Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.",
+            "args": [{
+                    "name": "subscriptionKey",
+                    "type": "credentials",
+                    "info": "The api key obtained from Microsoft Cognitive Servisces.",
+                    "required": true
+                }, {
+                    "name": "personGroupId",
+                    "type": "String",
+                    "info": "personGroupId of the person group to be updated.",
+                    "required": true
+                }, {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Person group display name. The maximum length is 128.",
+                    "required": false
+                }, {
+                    "name": "userData",
+                    "type": "String",
+                    "info": "User-provided data attached to the person group. The size limit is 16KB.",
+                    "required": false
+                }],
+            "callbacks": [{
+                    "name": "error",
+                    "info": "Error"
+                }, {
+                    "name": "success",
+                    "info": "Success"
+                }]
+        }]
 }
