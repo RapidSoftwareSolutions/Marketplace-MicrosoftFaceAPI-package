@@ -20,24 +20,26 @@ $app->post('/api/MicrosoftFaceApi/updateFaceList', function ($request, $response
     
     if(!empty($error)) {
         $result['callback'] = 'error';
-        $result['contextWrites']['to'] = implode(',', $error);
+        $result['contextWrites']['to']['status_code'] = 'JSON_VALIDATION';
+        $result['contextWrites']['to']['status_msg'] = implode(',', $error);
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
     }
     
     $error = [];
     if(empty($post_data['args']['subscriptionKey'])) {
-        $error[] = 'subscriptionKey is required';
+        $error[] = 'subscriptionKey';
     }
     if(empty($post_data['args']['faceListId'])) {
-        $error[] = 'faceListId is required';
+        $error[] = 'faceListId';
     }
     if(empty($post_data['args']['name'])) {
-        $error[] = 'name is required';
+        $error[] = 'name';
     }
     
     if(!empty($error)) {
         $result['callback'] = 'error';
-        $result['contextWrites']['to']['message'] = "There are incomplete fields in your request";
+        $result['contextWrites']['to']['status_code'] = "REQUIRED_FIELDS";
+        $result['contextWrites']['to']['status_msg'] = "Please, check and fill in required fields.";
         $result['contextWrites']['to']['fields'] = $error;
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
     }
@@ -68,26 +70,40 @@ $app->post('/api/MicrosoftFaceApi/updateFaceList', function ($request, $response
             $result['contextWrites']['to'] = "updated";
         } else {
             $result['callback'] = 'error';
-            $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
+            $result['contextWrites']['to']['status_code'] = 'API_ERROR';
+            $result['contextWrites']['to']['status_msg'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
         }
 
     } catch (\GuzzleHttp\Exception\ClientException $exception) {
 
-        $responseBody = $exception->getResponse()->getBody();
+        $responseBody = $exception->getResponse()->getBody()->getContents();
+        if(empty(json_decode($responseBody))) {
+            $out = $responseBody;
+        } else {
+            $out = json_decode($responseBody);
+        }
         $result['callback'] = 'error';
-        $result['contextWrites']['to'] = json_decode($responseBody);
+        $result['contextWrites']['to']['status_code'] = 'API_ERROR';
+        $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {
 
+        $responseBody = $exception->getResponse()->getBody()->getContents();
+        if(empty(json_decode($responseBody))) {
+            $out = $responseBody;
+        } else {
+            $out = json_decode($responseBody);
+        }
+        $result['callback'] = 'error';
+        $result['contextWrites']['to']['status_code'] = 'API_ERROR';
+        $result['contextWrites']['to']['status_msg'] = $out;
+
+    } catch (GuzzleHttp\Exception\ConnectException $exception) {
+
         $responseBody = $exception->getResponse()->getBody(true);
         $result['callback'] = 'error';
-        $result['contextWrites']['to'] = json_decode($responseBody);
-
-    } catch (GuzzleHttp\Exception\BadResponseException $exception) {
-
-        $responseBody = $exception->getResponse()->getBody(true);
-        $result['callback'] = 'error';
-        $result['contextWrites']['to'] = json_decode($responseBody);
+        $result['contextWrites']['to']['status_code'] = 'INTERNAL_PACKAGE_ERROR';
+        $result['contextWrites']['to']['status_msg'] = 'Something went wrong inside the package.';
 
     }
 
