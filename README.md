@@ -1,3 +1,5 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/MicrosoftFaceApi/functions?utm_source=RapidAPIGitHub_MicrosoftFaceFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
 # MicrosoftFaceApi Package
 Microsoft Face API, a cloud-based service that provides the most advanced face algorithms. Face API has two main functions: face detection with attributes and face recognition.
 * Domain: microsoft.com
