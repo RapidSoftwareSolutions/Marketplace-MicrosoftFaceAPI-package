@@ -105,9 +105,14 @@
                     "required": true
                 }, {
                     "name": "faceIds",
-                    "type": "JSON",
+                    "type": "List",
                     "info": "Json array of candidate faceId created by detectFaces. The maximum is 1000 faces. See the parameter notes section for more information. See divideFacesIntoGroups README for more details.",
-                    "required": true
+                    "required": true,
+                    "structure": {
+                      "name": "id",
+                      "type": "String",
+                      "info": "Face id"
+                    }
                 }],
             "callbacks": [{
                     "name": "error",
@@ -127,9 +132,14 @@
                     "required": true
                 }, {
                     "name": "faceIds",
-                    "type": "JSON",
+                    "type": "List",
                     "info": "Json array of query faces faceIds, created by the detectFaces. Each of the faces are identified independently. The valid number of faceIds is between [1, 10]. See the parameter notes section for more information. See identifyFaces README for more details.",
-                    "required": true
+                    "required": true,
+                    "structure": {
+                      "name": "id",
+                      "type": "String",
+                      "info": "Face id"
+                    }
                 }, {
                     "name": "personGroupId",
                     "type": "String",
