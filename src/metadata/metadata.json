@@ -9,7 +9,8 @@
         "domain": "microsoft.com",
         "credentials": ["subscriptionKey"]
     },
-    "blocks": [{
+    "blocks": [
+      {
             "name": "detectFaces",
             "description": "Detect human faces in an image and returns face locations, and optionally with faceIds, landmarks, and attributes.",
             "args": [{
@@ -45,7 +46,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "findSimilarFaces",
             "description": "Given query face's faceId, to search the similar-looking faces from a faceId array or a faceListId. ",
             "args": [{
@@ -65,9 +67,14 @@
                     "required": true
                 }, {
                     "name": "faceIds",
-                    "type": "JSON",
+                    "type": "List",
                     "info": "An json array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time. See the parameter notes section for more information. See findSimilarFaces README for more details.",
-                    "required": true
+                    "required": true,
+                    "structure": {
+                      "name": "id",
+                      "type": "String",
+                      "info": "Face id"
+                    }
                 }, {
                     "name": "maxNumOfCandidatesReturned",
                     "type": "String",
@@ -75,7 +82,8 @@
                     "required": false
                 }, {
                     "name": "mode",
-                    "type": "String",
+                    "type": "Select",
+                    "options":["matchPerson","matchFace"],
                     "info": "Similar face searching mode. It can be \"matchPerson\" or \"matchFace\". It defaults to \"matchPerson\".",
                     "required": false
                 }],
@@ -86,7 +94,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "divideFacesIntoGroups",
             "description": "Divide candidate faces into groups based on face similarity.",
             "args": [{
@@ -107,7 +116,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "identifyFaces",
             "description": "Identify unknown faces from a person group.",
             "args": [{
@@ -143,7 +153,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "verifyFaceToFace",
             "description": "Verify whether two faces belong to a same person",
             "args": [{
@@ -169,7 +180,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "verifyFaceToPerson",
             "description": "Verify whether one face belongs to a person.",
             "args": [{
@@ -200,7 +212,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "addFaceToFaceList",
             "description": "Add a face to a face list.",
             "args": [{
@@ -236,7 +249,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "createFaceList",
             "description": "Create an empty face list with user-specified faceListId, name and an optional userData. Up to 64 face lists are allowed to exist in one subscription.",
             "args": [{
@@ -267,7 +281,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "deleteFaceFromFaceList",
             "description": "Delete an existing face from a face list (given by a persisitedFaceId and a faceListId). Persisted image related to the face will also be deleted.",
             "args": [{
@@ -293,7 +308,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "deleteFaceList",
             "description": "Delete an existing face list according to faceListId. Persisted face images in the face list will also be deleted.",
             "args": [{
@@ -314,7 +330,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getFaceList",
             "description": "Retrieve a face list's information, including faceListId, name, userData and faces in the face list.",
             "args": [{
@@ -335,7 +352,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getFaceLists",
             "description": "Retrieve information about all existing face lists. Only faceListId, name and userData will be returned.",
             "args": [{
@@ -351,7 +369,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "updateFaceList",
             "description": "Update information of a face list, including name and userData.",
             "args": [{
@@ -382,7 +401,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "addPersonFace",
             "description": "Add a representative face to a person for identification.",
             "args": [{
@@ -423,7 +443,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "createPerson",
             "description": "Create a new person in a specified person group.",
             "args": [{
@@ -454,7 +475,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "deletePerson",
             "description": "Delete an existing person from a person group. Persisted face images of the person will also be deleted.",
             "args": [{
@@ -480,7 +502,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "deletePersonFace",
             "description": "Delete a face from a person. Relative image for the persisted face will also be deleted.",
             "args": [{
@@ -511,7 +534,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getPerson",
             "description": "Retrieve a person's information, including registered persisted faces, name and userData.",
             "args": [{
@@ -537,7 +561,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getPersonFace",
             "description": "Retrieve information about a persisted face (specified by persistedFaceId, personId and its belonging personGroupId).",
             "args": [{
@@ -568,7 +593,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getPersonsInPersonGroup",
             "description": "List all persons in a person group, and retrieve person information (including personId, name, userData and persistedFaceIds of registered faces of the person).",
             "args": [{
@@ -589,7 +615,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "updatePerson",
             "description": "Update name or userData of a person.",
             "args": [{
@@ -625,7 +652,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "updatePersonFace",
             "description": "Update a person persisted face's userData field.",
             "args": [{
@@ -661,7 +689,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "createPersonGroup",
             "description": "Create a new person group with specified personGroupId, name and user-provided userData. ",
             "args": [{
@@ -692,7 +721,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "deletePersonGroup",
             "description": "Delete an existing person group. Persisted face images of all people in the person group will also be deleted.",
             "args": [{
@@ -713,7 +743,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getPersonGroup",
             "description": "Retrieve the information of a person group, including its name and userData.",
             "args": [{
@@ -734,7 +765,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getPersonGroupTrainingStatus",
             "description": "Retrieve the training status of a person group (completed or ongoing).",
             "args": [{
@@ -755,7 +787,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "getPersonGroups",
             "description": "List person groups and their information.",
             "args": [{
@@ -781,7 +814,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "trainPersonGroup",
             "description": "Queue a person group training task, the training task may not be started immediately.",
             "args": [{
@@ -802,7 +836,8 @@
                     "name": "success",
                     "info": "Success"
                 }]
-        }, {
+        },
+      {
             "name": "updatePersonGroup",
             "description": "Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.",
             "args": [{
