@@ -903,7 +903,7 @@
           "name": "userData",
           "type": "String",
           "info": "User-provided data attached to the person. Maximum length is 16KB.",
-          "required": false
+          "required": true
         }
       ],
       "callbacks": [
