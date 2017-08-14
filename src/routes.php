@@ -1,5 +1,6 @@
 <?php
 $routes = [
+'findSimilarFacesInList',
     'detectFaces',
     'findSimilarFaces',
     'divideFacesIntoGroups',

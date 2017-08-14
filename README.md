@@ -32,14 +32,29 @@ Detect human faces in an image and returns face locations, and optionally with f
 | returnFaceAttributes| String     | Optional: Analyze and return the one or more specified face attributes in the comma-separated string like "returnFaceAttributes=age,gender". Supported face attributes include age, gender, headPose, smile, facialHair, and glasses. Note that each face attribute analysis has additional computational and time cost.
 
 ## MicrosoftFaceApi.findSimilarFaces
-Given query face's faceId, to search the similar-looking faces from a faceId array or a faceListId. 
+Given query face's faceId, to search the similar-looking faces from a faceId array. 
+
+| Field                      | Type       | Description
+|----------------------------|------------|----------
+| subscriptionKey            | credentials| Required: The api key obtained from Microsoft Cognitive Services.
+| faceId                     | String     | Required: faceId of the query face. User needs to call detectFaces first to get a valid faceId. Note that this faceId is not persisted and will expire in 24 hours after the detection call.
+| faceIds                    | List       | Required: An json array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time.
+| maxNumOfCandidatesReturned | String     | Optional: The number of top similar faces returned. The valid range is [1, 1000].It defaults to 20.
+| mode                       | Select     | Optional: Similar face searching mode. It can be "matchPerson" or "matchFace". It defaults to "matchPerson".
+
+### faceIds format:
+
+```json
+["1cbb4b3b-3a83-457a-a3dc-3110b094dc21", "ad0a56a0-afdc-4e6c-bae2-b6dc5d6a3ee0"]
+```
+## MicrosoftFaceApi.findSimilarFacesInList
+Given query face's faceId, to search the similar-looking faces from a faceListId. 
 
 | Field                      | Type       | Description
 |----------------------------|------------|----------
 | subscriptionKey            | credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | faceId                     | String     | Required: faceId of the query face. User needs to call detectFaces first to get a valid faceId. Note that this faceId is not persisted and will expire in 24 hours after the detection call.
 | faceListId                 | String     | Required: An existing user-specified unique candidate face list, created earlier. Parameter faceListId and faceIds should not be provided at the same time.
-| faceIds                    | List       | Required: An json array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time.
 | maxNumOfCandidatesReturned | String     | Optional: The number of top similar faces returned. The valid range is [1, 1000].It defaults to 20.
 | mode                       | Select     | Optional: Similar face searching mode. It can be "matchPerson" or "matchFace". It defaults to "matchPerson".
 
