@@ -67,7 +67,7 @@ $app->post('/api/MicrosoftFaceApi/createPersonGroup', function ($request, $respo
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = $post_data['args']['personGroupId'];
+            $result['contextWrites']['to'] =["personGroupId" => $post_data['args']['personGroupId']];
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to']['status_code'] = 'API_ERROR';

@@ -293,7 +293,7 @@ List person groups and their information.
 |----------------|------------|----------
 | subscriptionKey| credentials| Required: The api key obtained from Microsoft Cognitive Services.
 | start          | String     | Optional: List person groups from the least personGroupId greater than the "start". It contains no more than 64 characters. Default is empty.
-| top            | String     | Optional: The number of person groups to list, ranging in [1, 1000]. Default is 1000.
+| top            | Number     | Optional: The number of person groups to list, ranging in [1, 1000]. Default is 1000.
 
 ## MicrosoftFaceApi.trainPersonGroup
 Queue a person group training task, the training task may not be started immediately.

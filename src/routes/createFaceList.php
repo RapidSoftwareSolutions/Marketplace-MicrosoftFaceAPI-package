@@ -67,7 +67,7 @@ $app->post('/api/MicrosoftFaceApi/createFaceList', function ($request, $response
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = $post_data['args']['faceListId'];
+            $result['contextWrites']['to'] =["faceListId" => $post_data['args']['faceListId']];
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to']['status_code'] = 'API_ERROR';

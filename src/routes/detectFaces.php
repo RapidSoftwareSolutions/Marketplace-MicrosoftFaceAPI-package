@@ -50,8 +50,9 @@ $app->post('/api/MicrosoftFaceApi/detectFaces', function ($request, $response, $
         $query['returnFaceLandmarks'] = $post_data['args']['returnFaceLandmarks'];
     }
     if(!empty($post_data['args']['returnFaceAttributes'])) {
-        $query['returnFaceAttributes'] = $post_data['args']['returnFaceAttributes'];
+        $query['returnFaceAttributes'] = is_array($post_data['args']['returnFaceAttributes']) ? implode(",", $post_data['args']['returnFaceAttributes']) : $post_data['args']['returnFaceAttributes'];
     }
+
     
     $headers['Ocp-Apim-Subscription-Key'] = $post_data['args']['subscriptionKey'];
     $headers['Content-Type'] = 'application/json';

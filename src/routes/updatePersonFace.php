@@ -70,7 +70,7 @@ $app->post('/api/MicrosoftFaceApi/updatePersonFace', function ($request, $respon
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = "updated";
+            $result['contextWrites']['to'] = ["update" => "updated"];
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to']['status_code'] = 'API_ERROR';

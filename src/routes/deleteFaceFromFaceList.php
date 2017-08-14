@@ -61,7 +61,7 @@ $app->post('/api/MicrosoftFaceApi/deleteFaceFromFaceList', function ($request, $
         $responseBody = $resp->getBody()->getContents();
         if($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = "deleted";
+            $result['contextWrites']['to'] = ["result" => "deleted"];
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to']['status_code'] = 'API_ERROR';
