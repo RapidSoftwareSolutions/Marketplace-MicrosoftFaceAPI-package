@@ -113,13 +113,13 @@
           "name": "faceListId",
           "type": "String",
           "info": "An existing user-specified unique candidate face list, created earlier. Parameter faceListId and faceIds should not be provided at the same time.",
-          "required": true
+          "required": false
         },
         {
           "name": "faceIds",
           "type": "List",
           "info": "An json array of candidate faceIds. All of them are created by detectFaces and the faceIds will expire in 24 hours after the detection call. The number of faceIds is limited to 1000. Parameter faceListId and faceIds should not be provided at the same time. See the parameter notes section for more information. See findSimilarFaces README for more details.",
-          "required": true,
+          "required": false,
           "structure": {
             "name": "id",
             "type": "String",
