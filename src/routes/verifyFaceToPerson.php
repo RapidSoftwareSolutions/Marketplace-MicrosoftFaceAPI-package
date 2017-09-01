@@ -54,7 +54,7 @@ $app->post('/api/MicrosoftFaceApi/verifyFaceToPerson', function ($request, $resp
     
     $headers['Ocp-Apim-Subscription-Key'] = $post_data['args']['subscriptionKey'];
     $headers['Content-Type'] = 'application/json';
-    $query_str = $settings['api_url'] . 'verify';
+     if(!empty($post_data['args']['region'])){         $settings['api_url'] = "https://".$post_data['args']['region'].".api.cognitive.microsoft.com/face/v1.0/";     }  $query_str = $settings['api_url'] . 'verify';
     
     $client = $this->httpClient;
 

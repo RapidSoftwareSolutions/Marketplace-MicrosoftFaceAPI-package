@@ -53,12 +53,11 @@ $app->post('/api/MicrosoftFaceApi/detectFaces', function ($request, $response, $
         $query['returnFaceAttributes'] = is_array($post_data['args']['returnFaceAttributes']) ? implode(",", $post_data['args']['returnFaceAttributes']) : $post_data['args']['returnFaceAttributes'];
     }
 
-    
     $headers['Ocp-Apim-Subscription-Key'] = $post_data['args']['subscriptionKey'];
     $headers['Content-Type'] = 'application/json';
-    $query_str = $settings['api_url'] . 'detect';
+     if(!empty($post_data['args']['region'])){         $settings['api_url'] = "https://".$post_data['args']['region'].".api.cognitive.microsoft.com/face/v1.0/";     }  $query_str = $settings['api_url'] . 'detect';
     $body['url'] = $post_data['args']['image'];
-    
+
     $client = $this->httpClient;
 
     try {

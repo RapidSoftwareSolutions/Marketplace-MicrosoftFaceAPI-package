@@ -50,7 +50,7 @@ $app->post('/api/MicrosoftFaceApi/deletePersonFace', function ($request, $respon
     
     $headers['Ocp-Apim-Subscription-Key'] = $post_data['args']['subscriptionKey'];
     $headers['Content-Type'] = 'application/json';
-    $query_str = $settings['api_url'] . 'persongroups/'.$post_data['args']['personGroupId'].'/persons/'.$post_data['args']['personId'].'/persistedFaces/'.$post_data['args']['persistedFaceId'];
+     if(!empty($post_data['args']['region'])){         $settings['api_url'] = "https://".$post_data['args']['region'].".api.cognitive.microsoft.com/face/v1.0/";     }  $query_str = $settings['api_url'] . 'persongroups/'.$post_data['args']['personGroupId'].'/persons/'.$post_data['args']['personId'].'/persistedFaces/'.$post_data['args']['persistedFaceId'];
     
     $client = $this->httpClient;
 

@@ -80,6 +80,12 @@
           },
           "info": "Analyze and return the one or more specified face attributes in the comma-separated string like \"returnFaceAttributes=age,gender\". Supported face attributes include age, gender, headPose, smile, facialHair, and glasses. Note that each face attribute analysis has additional computational and time cost.",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -135,6 +141,12 @@
           ],
           "info": "Similar face searching mode. It can be \"matchPerson\" or \"matchFace\". It defaults to \"matchPerson\".",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -185,6 +197,12 @@
           ],
           "info": "Similar face searching mode. It can be \"matchPerson\" or \"matchFace\". It defaults to \"matchPerson\".",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -218,6 +236,12 @@
             "type": "String",
             "info": "Face id"
           }
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -276,6 +300,12 @@
           "type": "String",
           "info": "Confidence threshold of identification, used to judge whether one face belong to one person. The range of confidenceThreshold is [0, 1] (default specified by algorithm).",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -310,6 +340,12 @@
           "type": "String",
           "info": "faceId of one face, comes from detectFaces.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -350,6 +386,12 @@
           "type": "String",
           "info": "Specify a certain person in a person group. personId is created in createPerson.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -389,6 +431,12 @@
           "name": "userData",
           "type": "String",
           "info": "Optional user defined data for the face list. Length should not exceed 16KB.",
+          "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
           "required": false
         }
       ],
@@ -436,6 +484,12 @@
           "type": "String",
           "info": "A face rectangle to specify the target face to be added into the face list, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". If there is more than one face in the image, targetFace is required to specify which face to add. No targetFace means there is only one face detected in the entire image.",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -470,6 +524,12 @@
           "type": "String",
           "info": "persistedFaceId of an existing face. Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -498,6 +558,12 @@
           "type": "String",
           "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -526,6 +592,12 @@
           "type": "String",
           "info": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -548,6 +620,12 @@
           "type": "credentials",
           "info": "The api key obtained from Microsoft Cognitive Servisces.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -587,6 +665,12 @@
           "name": "userData",
           "type": "String",
           "info": "Optional user defined data for the face list. Length should not exceed 16KB.",
+          "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
           "required": false
         }
       ],
@@ -640,6 +724,12 @@
           "type": "String",
           "info": "A face rectangle to specify the target face to be added to a person, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". If there is more than one face in the image, targetFace is required to specify which face to add. No targetFace means there is only one face detected in the entire image.",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -680,6 +770,12 @@
           "type": "String",
           "info": "User-specified data about the target face to add for any purpose. The maximum length is 1KB.",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -714,6 +810,12 @@
           "type": "String",
           "info": "The target personId to delete.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -754,6 +856,12 @@
           "type": "String",
           "info": "The persisted face to remove.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -788,6 +896,12 @@
           "type": "String",
           "info": "The target personId to delete.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -828,6 +942,12 @@
           "type": "String",
           "info": "The persistedFaceId of the target persisted face of the person.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -856,6 +976,12 @@
           "type": "String",
           "info": "personGroupId of the target person group.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -901,6 +1027,12 @@
           "name": "userData",
           "type": "String",
           "info": "User-provided data attached to the person. Maximum length is 16KB.",
+          "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
           "required": false
         }
       ],
@@ -948,6 +1080,12 @@
           "type": "String",
           "info": "User-provided data attached to the person. Maximum length is 16KB.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -988,6 +1126,12 @@
           "type": "String",
           "info": "User-provided data attached to the person group. The size limit is 16KB.",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -1016,6 +1160,12 @@
           "type": "String",
           "info": "User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -1044,6 +1194,12 @@
           "type": "String",
           "info": "User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -1072,6 +1228,12 @@
           "type": "String",
           "info": "User-provided personGroupId as a string. The valid characters include numbers, English letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -1106,6 +1268,12 @@
           "type": "Number",
           "info": "The number of person groups to list, ranging in [1, 1000]. Default is 1000.",
           "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -1134,6 +1302,12 @@
           "type": "String",
           "info": "Target person group to be trained.",
           "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
+          "required": false
         }
       ],
       "callbacks": [
@@ -1173,6 +1347,12 @@
           "name": "userData",
           "type": "String",
           "info": "User-provided data attached to the person group. The size limit is 16KB.",
+          "required": false
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "Region for your apiKey. Defaults to `westus`",
           "required": false
         }
       ],

@@ -55,7 +55,7 @@ $app->post('/api/MicrosoftFaceApi/updatePerson', function ($request, $response, 
     
     $headers['Ocp-Apim-Subscription-Key'] = $post_data['args']['subscriptionKey'];
     $headers['Content-Type'] = 'application/json';
-    $query_str = $settings['api_url'] . 'persongroups/'.$post_data['args']['personGroupId'].'/persons/'.$post_data['args']['personId'];
+     if(!empty($post_data['args']['region'])){         $settings['api_url'] = "https://".$post_data['args']['region'].".api.cognitive.microsoft.com/face/v1.0/";     }  $query_str = $settings['api_url'] . 'persongroups/'.$post_data['args']['personGroupId'].'/persons/'.$post_data['args']['personId'];
     
     $client = $this->httpClient;
 
