@@ -107,7 +107,7 @@ $app->post('/api/MicrosoftFaceApi/findSimilarFacesInList', function ($request, $
 
     } catch (GuzzleHttp\Exception\ConnectException $exception) {
 
-        $responseBody = $exception->getResponse()->getBody(true);
+
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'INTERNAL_PACKAGE_ERROR';
         $result['contextWrites']['to']['status_msg'] = 'Something went wrong inside the package.';
